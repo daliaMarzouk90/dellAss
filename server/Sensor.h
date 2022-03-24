@@ -1,3 +1,5 @@
+#pragma once
+
 #include "pthread.h"
 #include "Producer.h"
 class Sensor
@@ -12,10 +14,3 @@ private:
     Producer *m_pProducer;
 };
 
-Sensor::Sensor(Producer *producer)
-{
-}
-
-Sensor::~Sensor()
-{
-}
