@@ -1,11 +1,12 @@
 #include "AverageTask.h"
 #include "AccumelationTask.h"
-#include <list>
+#include <vector>
+#include <memory>
 
 class TaskManager
 {
 private:
-    std::list<Task> m_Tasks;
+    std::vector<std::unique_ptr<Task>> m_pTasks;
 public:
     TaskManager();
     ~TaskManager();
@@ -14,9 +15,8 @@ public:
 
 TaskManager::TaskManager(/* args */)
 {
-    m_Tasks.push_back(AccumelationTask());
-    m_Tasks.push_back(AverageTask());
-}
+    m_pTasks.push_back(std::make_unique<AccumelationTask>());
+    m_pTasks.push_back(std::make_unique<AverageTask>());
 
 TaskManager::~TaskManager()
 {

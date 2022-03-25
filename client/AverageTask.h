@@ -7,7 +7,7 @@ class AverageTask : public Task
 private:
     int     m_callingCount = 0;
     float   m_AccTemp = 0;
-    float   m_Average;
+    float   m_Average = 0;
 public:
     AverageTask();
     ~AverageTask();
