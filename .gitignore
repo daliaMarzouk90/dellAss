@@ -1,4 +1,4 @@
 .vscode/launch.json
 .vscode/tasks.json
-server/Server
-client/Client
+server/src/Server
+client/src/Client
