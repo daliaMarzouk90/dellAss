@@ -9,7 +9,7 @@ private:
 public:
     AMQProducer(/* args */);
     ~AMQProducer();
-    virtual void Report(int value);
+    virtual void Report(float value);
 };
 
 

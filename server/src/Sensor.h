@@ -2,15 +2,22 @@
 
 #include "pthread.h"
 #include "Producer.h"
+#include <memory>
+#include <thread>
+
 class Sensor
 {
 
 public:
-    Sensor(Producer *producer);
+    Sensor(std::shared_ptr<Producer> producer);
+    //Sensor() = delete;
     ~Sensor();
-private:
     void Run();
-    void GetSensorReading();
-    Producer *m_pProducer;
+private:
+    
+    void     SensorLoop();
+    float    ReadSensorVal();
+    Producer    *m_pProducer;
+    std::thread m_thread;
 };
 

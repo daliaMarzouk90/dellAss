@@ -1,5 +1,5 @@
 #include "AMQProducer.h"
-
+#include "iostream"
 AMQProducer::AMQProducer(/* args */)
 {
 }
@@ -11,6 +11,7 @@ void AMQProducer::CreateConnection()
 {
 }
 
-void AMQProducer::Report(int value)
+void AMQProducer::Report(float value)
 {
+    std::cout << value << std::endl;
 }
