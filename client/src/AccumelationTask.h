@@ -21,7 +21,7 @@ AccumelationTask::~AccumelationTask( )
 {
 }
 
-bool AccumelationTask::RunTask(int Value)
+bool AccumelationTask::RunTask(float Value)
 {
     m_callingCount += 1;
     m_AccTemp += Value;

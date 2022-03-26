@@ -22,7 +22,7 @@ AverageTask::~AverageTask( )
 {
 }
 
-bool AverageTask::RunTask(int Value)
+bool AverageTask::RunTask(float Value)
 {
     m_callingCount += 1;
     m_AccTemp += Value;

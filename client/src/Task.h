@@ -3,5 +3,5 @@ class Task
 private:
     
 public:
-    virtual bool RunTask(int Value) = 0;
+    virtual bool RunTask(float Value) = 0;
 };
