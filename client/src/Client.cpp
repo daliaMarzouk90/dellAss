@@ -1,5 +1,5 @@
 #include <iostream>
-#include "AMQConsumer.h""
+#include "AMQConsumer.h"
 #include "TaskManager.h"
 #include <memory>
 
@@ -7,7 +7,7 @@ class Client
 {
 private:
     std::shared_ptr<Consumer> m_pConsumer;
-    std::unique_ptr<TaskManager>   m_pTaskManager;    
+    std::shared_ptr<TaskManager>   m_pTaskManager;    
 public:
     Client(/* args */);
     ~Client();
@@ -17,7 +17,7 @@ public:
 
 Client::Client(/* args */)
 {
-    m_pConsumer = std::make_shared<ActiveMQConsumer>();
+    m_pConsumer = std::make_shared<AMQConsumer>();
     m_pTaskManager = std::make_shared<TaskManager>(m_pConsumer);
 }
 
@@ -27,7 +27,7 @@ Client::~Client()
 
 void Client::Run()
 {
-    //m_pSensor->Run();
+    m_pTaskManager->RunTasks();
 }
 
 int main()

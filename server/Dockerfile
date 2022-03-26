@@ -1,35 +1,26 @@
-#base image
 FROM ubuntu:20.04
 
-#update and install prerequists
-ENV TZ=Europe/Minsk
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezon
-RUN apt-get -y update && apt-get -y install build-essential git curl unzip tar zip autoconf libtool gcc cmake
+ENV TZ=Europe/London
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+RUN apt-get update && apt-get -y install build-essential git curl unzip tar zip
+
+
+RUN apt-get autoremove -y
 RUN apt-get -y install wget
+RUN wget -O cmake.sh https://github.com/Kitware/CMake/releases/download/v3.23.0-rc5/cmake-3.23.0-rc5-linux-x86_64.sh && sh ./cmake.sh --prefix=/usr/local --skip-license
 
-#install vcpkg
-RUN wget -O vcpkg.tar.gz https://github.com/microsoft/vcpkg/archive/master.tar.gz
-RUN mkdir /opt/vcpkg
-RUN tar xf vcpkg.tar.gz --strip-components=1 -C /opt/vcpkg
-RUN /opt/vcpkg/bootstrap-vcpkg.sh -useSystemBinaries
-RUN ln -s /opt/vcpkg/vcpkg /usr/local/bin/vcpkg
+ENV CC clang
+ENV CXX clang++
 
-#install cmake
-RUN apt-get -y purge cmake
-RUN apt-get -y update
-RUN apt-get -y install libssl-dev
-RUN wget https://github.com/Kitware/CMake/releases/download/v3.23.0-rc5/cmake-3.23.0-rc5.tar.gz
-RUN tar -xvzf cmake-3.23.0-rc5.tar.gz
-RUN rm cmake-3.23.0-rc5.tar.gz
-RUN cmake-3.23.0-rc5/bootstrap --parallel=8
+RUN apt-get -y install libapr1 libapr1-dev libssl-dev
+
+RUN git clone https://gitbox.apache.org/repos/asf/activemq-cpp.git 
+RUN cd activemq-cpp/activemq-cpp
+RUN ./autogen.sh
+RUN ./configure
 RUN make
 RUN make install
-
-#install activemq-cpp
-RUN vcpkg update
-RUN VCPKG_FORCE_SYSTEM_BINARIES=1 vcpkg install --clean-buildtrees-after-build --clean-packages-after-build --clean-downloads-after-build apr activemq-cpp
-
-ENV VCPKG_DIR=/opt/vcpkg/
 
 COPY ./ /server/
 

@@ -7,3 +7,4 @@ server/src/.vscode/launch.json
 server/src/.vscode/settings.json
 server/src/.vscode/tasks.json
 .vscode/settings.json
+server/src/build/*

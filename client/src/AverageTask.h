@@ -11,7 +11,8 @@ private:
 public:
     AverageTask();
     ~AverageTask();
-    bool RunTask(int Value);
+    bool RunTask(float Value);
+    void Print();
 };
 
 AverageTask::AverageTask()
@@ -30,3 +31,9 @@ bool AverageTask::RunTask(float Value)
 
     return true;
 }
+
+void AverageTask::Print(){
+        static int count = 0;
+        std::cout << count << ": Average sensor value is: " << m_AccTemp / m_callingCount << std::endl;
+        count += 1;
+    }

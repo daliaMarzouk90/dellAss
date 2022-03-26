@@ -50,7 +50,6 @@ public:
 
     SimpleConsumer( const std::string& brokerURI,
                          const std::string& destURI,
-                         void (*func)(),
                          bool useTopic = true,
                          bool clientAck = false ) :
         useTopic(useTopic),

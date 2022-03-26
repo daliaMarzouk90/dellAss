@@ -10,7 +10,8 @@ private:
 public:
     AccumelationTask();
     ~AccumelationTask();
-    bool RunTask(int Value);
+    bool RunTask(float Value);
+    void Print();
 };
 
 AccumelationTask::AccumelationTask()
@@ -28,3 +29,9 @@ bool AccumelationTask::RunTask(float Value)
 
     return true;
 }
+
+void AccumelationTask::Print(){
+        static int count = 0;
+        std::cout << count << ": Accumelated sensor value is: " << m_AccTemp / m_callingCount << std::endl;
+        count += 1;
+    }

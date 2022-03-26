@@ -1,6 +1,7 @@
 #include <iostream>
 #include "AMQProducer.h"
 #include "Sensor.h"
+
 #include <memory>
 
 class Server
