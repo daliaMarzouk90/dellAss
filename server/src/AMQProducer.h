@@ -1,13 +1,15 @@
 #pragma once
 
 #include "Producer.h"
+#include "SimpleProducer.h"
+#include <memory>
 
 class AMQProducer: public Producer
 {
 private:
-    virtual void CreateConnection();
+    std::unique_ptr<SimpleProducer> m_pProducer;
 public:
-    AMQProducer(/* args */);
+    AMQProducer();
     ~AMQProducer();
     virtual void Report(float value);
 };
