@@ -1,13 +1,21 @@
-version: "3.9"  # optional since v1.27.0
+version: "3.3"  # optional since v1.27.0
 services:
   activemq:
     image: rmohr/activemq
+    stdin_open: true
     ports:
       - "61616:61616"
       - "8161:8161"
   server:
     image: server
+    build: server/
+    depends_on:
+      - activemq
   client:
     image: client
+    build: client/
+    depends_on:
+      - activemq
+      - server
 volumes:
   logvolume01: {}
