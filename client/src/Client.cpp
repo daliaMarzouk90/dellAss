@@ -32,7 +32,7 @@ void Client::Run()
 
 int main()
 {
-    std::cout << "starting server ..." << std::endl;
+    std::cout << "starting client ..." << std::endl;
 
     Client _client;
     _client.Run();
